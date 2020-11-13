@@ -1,7 +1,7 @@
 from ship import Ship
 from settings import Settings
 import sys
-iimport pygame
+import pygame
 
 """This project is from Python Crash Course 2nd Edition by Eric Matthes"""
 
@@ -24,14 +24,29 @@ class AlienInvasion:
         """starts the main loop for the game."""
         while True:
             # Watch for the keyboard and mouse events.
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            # Redraw the screen during each pass through loop
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            # Make the most recently drawn screen visible
-            pygame.display.flip()
+            self._check_events()
+            self._update_screen()
+            self.ship.update()
+
+    def _check_events(self):
+        """Responds to keypresses and mouse events."""
+        # Watch for the keyboard and mouse events.
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    # Move the ship to the right
+                    self.ship.moving_right = True
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RIGHT:
+                        self.ship.moving_right = False
+
+    def _update_screen(self):
+        """Update image on the screen and flip to the new screen."""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        pygame.display.flip()
 
 
 if __name__ == '__main__':
