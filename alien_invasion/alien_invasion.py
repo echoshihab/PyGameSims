@@ -3,6 +3,7 @@ from ship import Ship
 from settings import Settings
 import pygame
 from bullet import Bullet
+from alien import Alien
 
 """This project is from Python Crash Course 2nd Edition by Eric Matthes"""
 
@@ -23,6 +24,9 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
 
     def run_game(self):
         """starts the main loop for the game."""
@@ -76,6 +80,7 @@ class AlienInvasion:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.aliens.draw(self.screen)
         pygame.display.flip()
 
     def _update_bullets(self):
@@ -86,6 +91,12 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+
+    def _create_fleet(self):
+        """Create the fleet of aliens."""
+        # Make an alien.
+        alien = Alien(self)
+        self.aliens.add(alien)
 
 
 if __name__ == '__main__':
