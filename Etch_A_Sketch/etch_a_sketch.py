@@ -19,10 +19,16 @@ def turn_clockwise():
 def turn_counter_clockwise():
     tim.left(15)
 
+def clear():
+    tim.clear()
+    tim.penup()
+    tim.home()
+    tim.pendown()
 
 screen.listen()
 screen.onkey(fun=move_forwards, key="w")
 screen.onkey(fun=move_backwards, key="s")
 screen.onkey(fun=turn_clockwise, key="d")
 screen.onkey(fun=turn_counter_clockwise, key="a")
+screen.onkey(fun=clear, key="c")
 screen.exitonclick()
