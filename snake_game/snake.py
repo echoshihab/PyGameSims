@@ -17,13 +17,27 @@ class Snake:
 
     def create_snake_list(self):
         for _ in range(3):
-            square = Turtle()
-            square.penup()
-            square.color("white")
-            square.shape("square")
-            square.setx(self.x_pos)
-            self.x_pos -= 20
-            self.snake_list.append(square)
+            self.add_snake_segment()
+
+    def create_snake_block(self):
+        square = Turtle()
+        square.color("white")
+        square.shape("square")
+        square.penup()
+        return square
+
+    def add_snake_segment(self):
+        snake_segment = self.create_snake_block()
+        snake_segment.penup()
+        snake_segment.setx(self.x_pos)
+        self.x_pos -= 20
+        self.snake_list.append(snake_segment)
+
+
+    def extend_snake(self):
+        snake_segment = self.create_snake_block()
+        snake_segment.goto(self.snake_list[-1].xcor(), self.snake_list[-1].ycor())
+        self.snake_list.append(snake_segment)
 
     def move(self):
         for seg in range(len(self.snake_list) - 1, 0, -1):
