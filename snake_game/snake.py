@@ -33,7 +33,6 @@ class Snake:
         self.x_pos -= 20
         self.snake_list.append(snake_segment)
 
-
     def extend_snake(self):
         snake_segment = self.create_snake_block()
         snake_segment.goto(self.snake_list[-1].xcor(), self.snake_list[-1].ycor())
