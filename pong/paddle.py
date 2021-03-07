@@ -1,9 +1,11 @@
 from turtle import Turtle
 
+
 # constants
 UP = 90
 DOWN = 270
 COLORS = ["yellow", "red"]
+
 
 class Paddle(Turtle):
     color_index = 0
@@ -25,9 +27,3 @@ class Paddle(Turtle):
     def down(self):
         self.setheading(DOWN)
         self.forward(20)
-
-
-
-
-
-

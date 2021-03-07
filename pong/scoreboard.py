@@ -19,13 +19,13 @@ class Scoreboard(Turtle):
         self.update_text()
 
     def update_text(self):
-        self.write(f"{self.paddle_one_score}: {self.paddle_two_score}", font=FONT, align=ALIGNMENT)
+        self.write(f"{self.paddle_two_score}: {self.paddle_one_score}", font=FONT, align=ALIGNMENT)
 
     def update_score(self, winner):
         if winner == "left":
-            self.paddle_one_score += 1
-        elif winner == "right":
             self.paddle_two_score += 1
+        elif winner == "right":
+            self.paddle_one_score += 1
         self.clear()
         self.update_text()
 
