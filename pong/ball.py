@@ -14,8 +14,8 @@ class Ball(Turtle):
         self.shape("circle")
         self.penup()
 
-    def move(self):
-        self.setheading(45)
-        self.goto((-310, 310))
+    def move(self, heading):
+        self.setheading(heading)
+        self.forward(10)
 
 
