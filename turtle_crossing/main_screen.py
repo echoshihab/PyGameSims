@@ -2,9 +2,6 @@ import time
 from turtle import Screen
 from player import Player
 import random
-from car import Car
-from car_manager import CarManager
-
 from car_manager import CarManager
 from scoreboard import Scoreboard
 
@@ -13,7 +10,7 @@ screen.setup(width=600, height=600)
 screen.tracer(0)
 player = Player()
 car_manager = CarManager()
-
+scoreboard = Scoreboard()
 
 screen.onkey(player.up, "Up")
 
@@ -43,6 +40,7 @@ while game_is_on:
 
     if player.ycor() >= 280:
         player.reset()
+        scoreboard.update_score()
 
     screen.update()
 

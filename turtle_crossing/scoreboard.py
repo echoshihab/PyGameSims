@@ -1,5 +1,29 @@
-FONT = ("Courier", 24, "normal")
+from turtle import Turtle
+
+FONT = ("Courier", 10, "normal")
+STARTING_COORDINATE_X = 100
+STARTING_COORDINATE_Y = 285
+ALIGNMENT = "Center"
 
 
-class Scoreboard:
-    pass
+class Scoreboard(Turtle):
+    def __init__(self):
+        super().__init__()
+        self.penup()
+        self.score = 0
+        self.goto(STARTING_COORDINATE_X, STARTING_COORDINATE_Y)
+        self.hideturtle()
+        self.pencolor("black")
+        self.update_text()
+
+    def update_text(self):
+        self.write(f"Score: {self.score}", font=FONT, align=ALIGNMENT)
+
+    def update_score(self):
+        self.score += 1
+        self.clear()
+        self.update_text()
+
+    def game_over(self):
+        self.goto(0, 0)
+        self.write(f"GAME OVER!", font=FONT, align=ALIGNMENT)
