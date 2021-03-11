@@ -41,6 +41,9 @@ while game_is_on:
             car_list_2.remove(i)
         i.move(starting_speed)
 
+    if player.ycor() >= 280:
+        player.reset()
+
     screen.update()
 
 
