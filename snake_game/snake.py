@@ -60,3 +60,12 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def reset_snake(self):
+        for snake in self.snake_list:
+            snake.color("black")
+        self.snake_list.clear()
+        self.x_pos = 0
+        self.snake_list = []
+        self.create_snake_list()
+        self.head = self.snake_list[0]
