@@ -1,9 +1,8 @@
 from car import Car
 import random
-import time
+
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
-
 
 
 class CarManager:
@@ -20,9 +19,3 @@ class CarManager:
 
     def increase_speed(self):
         self.starting_speed += self.move_increment
-
-
-
-
-
-
