@@ -17,7 +17,8 @@ score = 0
 max_score = 50
 
 guessed_states = []
-need_to_learn_states = []
+all_states = data.state.to_list()
+
 
 def already_guessed(state):
     if state in guessed_states:
@@ -29,12 +30,9 @@ while len(guessed_states) < 50:
     screen.update()
     state_data = data[data.state == answer_state]
     if answer_state == "Exit":
-        for state in data.state:
-            if state not in guessed_states:
-                need_to_learn_states.append(state)
-        pd.Series(need_to_learn_states).to_csv("need_to_learn_states.csv", index= False, header=None)
+        need_to_learn_states = [state for state in all_states if state not in guessed_states]
+        pd.Series(need_to_learn_states).to_csv("need_to_learn_states.csv", index=False, header=None)
         break
-
 
     if state_data.state.count() > 0 and not already_guessed(answer_state):
         guessed_states.append(answer_state)
