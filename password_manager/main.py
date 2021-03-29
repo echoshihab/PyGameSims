@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 
 
@@ -17,8 +18,21 @@ def clean_entries():
 
 
 def write_to_file(site, username, pw):
-    with open("data.txt", "a") as data:
-        data.write(f'{site} | {username} | {pw} \n')
+    json_data = {site: {
+        "username": username,
+        "password": pw
+    }}
+    try:
+        with open("data.json", "r") as data:
+            current_data = json.load(data)
+    except FileNotFoundError:
+        with open("data.json", "w") as new_file:
+            json.dump(json_data, new_file, indent=4)
+    else:
+        current_data.update(json_data)
+        with open("data.json", "w") as old_data:
+            json.dump(current_data, old_data, indent=4)
+
     messagebox.showinfo(title="Save", message="Operation Successful!")
     clean_entries()
 
@@ -60,6 +74,8 @@ def save_info_to_file():
             write_to_file(website, email_username, password)
 
 
+def search():
+    pass
 
 # CANVAS
 canvas = Canvas(height=200, width=200)
@@ -79,22 +95,26 @@ label_password.grid(row=3, column=0)
 
 # Entries
 entry_website = Entry(width=35)
-entry_website.grid(row=1, column=1, columnspan=2)
+entry_website.grid(row=1, column=1, sticky="e")
 entry_website.focus()
 
 entry_email_username = Entry(width=35)
-entry_email_username.grid(row=2, column=1, columnspan=2)
+entry_email_username.grid(row=2, column=1, columnspan=2, sticky="w")
 entry_email_username.insert(0, "test@gmail.com")
 
-entry_password = Entry(width=25)
-entry_password.grid(row=3, column=1, sticky="e")
+entry_password = Entry(width=35)
+entry_password.grid(row=3, column=1, sticky="w")
+
+# BUTTON Search
+search_button = Button(text="Search", command=search)
+search_button.grid(row=1, column=2, sticky="w")
 
 # BUTTON GENERATE PASSWORD
 generate_button = Button(text="Generate Password", command=generate_password)
-generate_button.grid(row=3, column=2, sticky="w")
+generate_button.grid(row=3, column=2, sticky="e")
 
 # BUTTON ADD
 add_button = Button(text="ADD", width=30, command=save_info_to_file)
-add_button.grid(row=4, column=1, columnspan=2)
+add_button.grid(row=4, column=1, columnspan=2, sticky="w")
 
 window.mainloop()
