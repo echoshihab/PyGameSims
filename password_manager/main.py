@@ -59,9 +59,9 @@ def generate_password():
 
 
 def save_info_to_file():
-    website = entry_website.get()
-    email_username = entry_email_username.get()
-    password = entry_password.get()
+    website = entry_website.get().title()
+    email_username = entry_email_username.get().title()
+    password = entry_password.get().title()
 
     if len(website) <= 0 or len(email_username) <= 0 or len(password) <= 0:
         messagebox.showerror(title="Error", message="All fields must be filled out")
@@ -75,7 +75,24 @@ def save_info_to_file():
 
 
 def search():
-    pass
+    website = entry_website.get().title()
+    if len(website) <= 0:
+        messagebox.showerror(title="Error", message="Website must be filled out")
+    else:
+        try:
+            with open("data.json", "r") as data:
+                current_data = json.load(data)
+
+        except FileNotFoundError:
+            messagebox.showerror(title="Error", message="No data file found")
+        else:
+            if website in current_data:
+                username = current_data[website]["username"]
+                password = current_data[website]["password"]
+                messagebox.showinfo(title=website, message=f"Username: {username} \n Password: {password}")
+            else:
+                messagebox.showerror(title="Error", message="Website not found")
+
 
 # CANVAS
 canvas = Canvas(height=200, width=200)
