@@ -3,7 +3,7 @@ import os
 from twilio.rest import Client
 
 # openweathermap set up
-api_key = "c6baf013df628b677e9fc43e87579a44"
+api_key = os.environ['OPENWEATHER_API_KEY']
 lat = "43.25"
 lon = "-79.87"
 
