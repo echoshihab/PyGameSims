@@ -1,5 +1,5 @@
 import requests
-from main import  SHEETY_ENDPOINT, SHEETY_TOKEN
+from main import SHEETY_USERS_ENDPOINT, SHEETY_TOKEN
 
 SHEETY_HEADER = {
     "Authorization": F"Bearer {SHEETY_TOKEN}",
@@ -37,7 +37,7 @@ if valid:
                 "email": email,
             }
     }
-    sheety_response = requests.post(url=SHEETY_ENDPOINT, json=user_data, headers=SHEETY_HEADER)
+    sheety_response = requests.post(url=SHEETY_USERS_ENDPOINT, json=user_data, headers=SHEETY_HEADER)
     print(sheety_response.json())
 
 

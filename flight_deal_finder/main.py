@@ -11,7 +11,8 @@ import os
 
 # SHEETY
 SHEETY_ENDPOINT = os.environ.get("SHEETY_ENDPOINT")
-SHEETY_TOKEN =  os.environ.get("SHEETY_TOKEN")
+SHEETY_USERS_ENDPOINT = os.environ.get("SHEETY_USERS_ENDPOINT")
+SHEETY_TOKEN = os.environ.get("SHEETY_TOKEN")
 SHEETY_HEADER = {
     "Authorization": F"Bearer {SHEETY_TOKEN}",
     "Content-Type": "application/json"
@@ -34,7 +35,7 @@ KIWI_PARAMS_LOC = {
     "active_only": True
 }
 
-#twillio
+# twillio
 TWILIO_SID = os.environ.get("TWILIO_SID")
 TWILIO_TOKEN = os.environ.get("TWILIO_TOKEN")
 TWILIO_FROM = os.environ.get("TWILIO_FROM")
@@ -79,6 +80,7 @@ KIWI_PARAMS_FLIGHT = {
 }
 
 #notify user by msg
+msg_body= ''
 for item in sheety_data["prices"]:
     KIWI_PARAMS_FLIGHT["fly_to"] = item["iataCode"]
     KIWI_PARAMS_FLIGHT["price_to"] = item["lowestPrice"]
@@ -86,6 +88,11 @@ for item in sheety_data["prices"]:
     flight_data = FlightData(kiwi_data, from_city="London", from_code="LCY")
     formatted_msg = flight_data.get_formatted_data(to_city=item["city"], to_city_code=item["iataCode"])
     if formatted_msg is not None:
-        msg_id = notification_manager.send_msg(from_num=TWILIO_FROM, to_num=TWILIO_TO, msg=formatted_msg)
-        print(msg_id)
+        msg_body += f'{formatted_msg}\n'
 
+
+notification_manager = NotificationManager(msg_sid=TWILIO_SID, msg_token=TWILIO_TOKEN, smtp_connection="smtp.gmail.com",
+                                           smtp_email="youremail@gmail.com", email_password="yourpassword")
+
+email_list = notification_manager.get_email_list(endpoint=SHEETY_USERS_ENDPOINT, header=SHEETY_HEADER)
+notification_manager.send_emails(emails_list=email_list, content=msg_body)
