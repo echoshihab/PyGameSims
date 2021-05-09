@@ -1,14 +1,144 @@
 body{
-    background-color: #EAF6F6;
+    margin: 0;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+
 }
-hr{
-    border-style: hidden hidden dotted;
-    border-width: 5px;
-    border-color: grey;
-    height: 2px;
-    width: 5%;
+h1{
+    margin:50px auto 0 auto;
+    font-family: 'Sacramento', cursive;
+    font-size: 5.625rem;
+    color:#66BFBF;
+    line-height: 2;
 }
 
-h1, h4{
-    color: #66BFBF
+h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color:#66BFBF;
+    font-weight: normal;
+    line-height: 2;
+}
+
+h3{
+    font-family: 'Montserrat', sans-serif;
+    color: #11999E
+    
+}
+
+a {
+    color: #11999E
+}
+
+
+#first_cloud{
+    position:relative;
+    top: 20px;
+    left: 260px;
+
+}
+#second_cloud{
+    position:absolute;
+
+}
+ 
+
+
+.skill-row{
+    width:50%;
+    margin: 100px auto 100px auto;
+    text-align: left;
+    line-height: 2;
+}
+
+.net-img{
+    width:10%;
+    height: 5%;
+    margin:0;
+    float:left;
+    padding-right: 30px;
+}
+
+.python-img{
+    width:30%;
+    height: 15%;
+    margin:0;
+    float:right;
+    padding-left: 30px;
+
+}
+
+.profile-img{
+    margin-top: 100px;
+    height: 200px;
+    width:200px;
+    border-radius:50%;
+}
+
+#py-text{
+ clear:right;   
+}
+
+#net-text{
+    clear:left;
+}
+
+hr{
+
+    width:80px;
+    border-bottom: 10px dotted;
+    border-color:#9b8d93;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+
+}
+
+
+.btn{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #11999E;
+    padding: 10px;
+    color:white;
+    text-decoration: none;
+    border-radius: 10%;
+    font-weight: bolder;
+}
+
+
+.top-container {
+    width:100%;
+    background-color: #E4F9F5;
+}
+
+.middle-container{
+    width:100%;
+    background-color:white
+}
+
+.bottom-container{
+    width:100%;
+    font-weight: bolder;
+    margin: 40px auto 0px;
+    padding-top:40px;
+    background-color: #66BFBF;
+    height: 150px;
+}
+
+.bottom-container > p {
+    color: #EAF6F6;
+}
+
+.contact-me > p{
+    margin-bottom: 40px;
+}
+
+.bottom-container > a{
+
+    color: #11999E;
+    text-align: center;
+
+    margin-top:30px;
+    margin-left: 30px;
+    text-decoration: none;
 }
