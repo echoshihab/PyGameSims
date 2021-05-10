@@ -3,3 +3,4 @@ __pycache__/
 images/
 .idea
 *.png
+/scrapers/movies.txt
