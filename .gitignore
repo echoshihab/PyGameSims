@@ -4,3 +4,4 @@ images/
 .idea
 *.png
 /scrapers/movies.txt
+/spotify_time_machine/.cache
